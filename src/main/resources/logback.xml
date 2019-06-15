@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+    <property name="log-path" value="logs" />
+    <property name="log-name" value="${log-path}/application" />
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d{HH:mm:ss.SSS zzz}] %-5level [%t] %logger.%method\(\) - %msg%n</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="DAILYLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log-name}.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log-name}.%d{yyyyMMdd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS zzz}] %-5level [%t] %logger.%method\(\) - %msg%n</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="DAILYLOG" />
+		<appender-ref ref="CONSOLE" />
+        <includeCallerData>true</includeCallerData>
+    </appender>
+
+    <logger name="io.vertx.starter" level="DEBUG" />
+
+    <root level="INFO">
+        <!-- CONSOLE, DAILYLOG, ASYNC -->
+        <appender-ref ref="ASYNC" />
+    </root>
+
+</configuration>

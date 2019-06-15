@@ -11,7 +11,9 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.starter.demo.Customer;
 import io.vertx.starter.demo.CustomerRepository;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MainVerticle extends AbstractVerticle {
 
 	private CustomerRepository repository = new CustomerRepository();
@@ -19,6 +21,7 @@ public class MainVerticle extends AbstractVerticle {
 	@Override
 	public void start() {
 
+		log.info("Start Vert.x");
 		Router router = Router.router(vertx);
 
 		router.route().handler(BodyHandler.create());
@@ -32,6 +35,8 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleListCustomer(RoutingContext routingContext) {
+		log.debug("listCustomer");
+
 		JsonArray arr = new JsonArray();
 		repository.findAll().forEach(c -> {
 			arr.add(JsonObject.mapFrom(c));
@@ -41,6 +46,7 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleAddCustomer(RoutingContext routingContext) {
+		log.debug("addCustomer");
 		JsonObject body = routingContext.getBodyAsJson();
 		HttpServerResponse response = routingContext.response();
 
@@ -53,6 +59,7 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleGetCustomer(RoutingContext routingContext) {
+		log.debug("getCustomer");
 		String id = routingContext.request().getParam("id");
 		HttpServerResponse response = routingContext.response();
 
@@ -70,6 +77,7 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleEditCustomer(RoutingContext routingContext) {
+		log.debug("editCustomer");
 		String id = routingContext.request().getParam("id");
 		JsonObject body = routingContext.getBodyAsJson();
 		HttpServerResponse response = routingContext.response();
@@ -91,6 +99,7 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleDeleteCustomer(RoutingContext routingContext) {
+		log.debug("deleteCustomer");
 		String id = routingContext.request().getParam("id");
 		HttpServerResponse response = routingContext.response();
 
