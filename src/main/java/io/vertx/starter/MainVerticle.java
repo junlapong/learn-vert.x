@@ -25,6 +25,11 @@ public class MainVerticle extends AbstractVerticle {
 		Router router = Router.router(vertx);
 
 		router.route().handler(BodyHandler.create());
+
+		router.get("/").handler(routingContext -> {
+			routingContext.response().putHeader("content-type", "text/html").end("Hello Vert.x");
+		});
+
 		router.get("/customers").handler(this::handleListCustomer);
 		router.get("/customers/:id").handler(this::handleGetCustomer);
 		router.post("/customers").handler(this::handleAddCustomer);
@@ -42,7 +47,7 @@ public class MainVerticle extends AbstractVerticle {
 			arr.add(JsonObject.mapFrom(c));
 		});
 
-		routingContext.response().putHeader("Content-Type", "application/json").end(arr.encodePrettily());
+		routingContext.response().putHeader("content-type", "application/json").end(arr.encodePrettily());
 	}
 
 	private void handleAddCustomer(RoutingContext routingContext) {
@@ -70,7 +75,7 @@ public class MainVerticle extends AbstractVerticle {
 			if (!customer.isPresent()) {
 				response.setStatusCode(404).end();
 			} else {
-				response.putHeader("Content-Type", "application/json")
+				response.putHeader("content-type", "application/json")
 						.end(JsonObject.mapFrom(customer.get()).encodePrettily());
 			}
 		}

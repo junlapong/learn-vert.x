@@ -29,7 +29,7 @@
         <includeCallerData>true</includeCallerData>
     </appender>
 
-    <logger name="io.vertx.starter" level="DEBUG" />
+    <logger name="io.vertx.starter" level="INFO" />
 
     <root level="INFO">
         <!-- CONSOLE, DAILYLOG, ASYNC -->
