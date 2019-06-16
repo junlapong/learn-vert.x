@@ -7,9 +7,9 @@ Content-Type: application/json
 
 {
 	"id": 0,
-    "firstName": "Somchai",
+	"firstName": "Somchai",
 	"lastName": "Jaidee",
-    "age": 20,
+	"age": 20,
 	"email": "somchai.jaidee@mail.com"
 }
 
@@ -28,11 +28,12 @@ Content-Type: application/json
 
 {
 	"id": 2,
-    "firstName": "John",
+	"firstName": "John",
 	"lastName": "Doe",
-    "age": 20,
+	"age": 20,
 	"email": "john.doe@mail.com"
 }
+
 ###
 
 DELETE {{host}}/customers/3 HTTP/1.1

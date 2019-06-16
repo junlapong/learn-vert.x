@@ -25,24 +25,28 @@ The command compiles the project and runs the tests, then it launches the applic
 
 	$ http :8080/
 
-	HTTP/1.1 200 OK
-	content-length: 12
-	content-type: text/html
+```
+HTTP/1.1 200 OK
+content-length: 12
+content-type: text/html
 
-	Hello Vert.x
+Hello Vert.x
+```
 
 Use [http](https://httpie.org/) command for request `GET` http://localhost:8080/
 
     $ wrk -c100 -d30s -t4 http://localhost:8080/
 
-    Running 30s test @ http://localhost:8080/
-    4 threads and 100 connections
-    Thread Stats   Avg      Stdev     Max   +/- Stdev
-        Latency     1.59ms  566.11us  29.26ms   92.06%
-        Req/Sec    15.84k     1.56k   23.28k    78.14%
-    1895830 requests in 30.10s, 137.41MB read
-    Requests/sec:  62974.93
-    Transfer/sec:      4.56MB
+```
+Running 30s test @ http://localhost:8080/
+  4 threads and 100 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.59ms  566.11us  29.26ms   92.06%
+    Req/Sec    15.84k     1.56k   23.28k    78.14%
+  1895830 requests in 30.10s, 137.41MB read
+Requests/sec:  62974.93
+Transfer/sec:      4.56MB
+```
 
 Use [wrk](https://github.com/wg/wrk) for benchmarking
 
