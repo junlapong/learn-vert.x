@@ -23,6 +23,8 @@ The command compiles the project and runs the tests, then it launches the applic
 
 ## Testing
 
+Use [http](https://httpie.org/) command for request `GET` http://localhost:8080/
+
 	$ http :8080/
 
 ```
@@ -33,7 +35,7 @@ content-type: text/html
 Hello Vert.x
 ```
 
-Use [http](https://httpie.org/) command for request `GET` http://localhost:8080/
+Use [wrk](https://github.com/wg/wrk) for benchmarking
 
     $ wrk -c100 -d30s -t4 http://localhost:8080/
 
@@ -48,8 +50,6 @@ Requests/sec:  62974.93
 Transfer/sec:      4.56MB
 ```
 
-Use [wrk](https://github.com/wg/wrk) for benchmarking
+Use [VisualVM](https://visualvm.github.io/) for monitor CPU and Memory usage
 
 ![](visualvm-vert.x.png)
-
-Use [VisualVM](https://visualvm.github.io/) for monitor CPU and Memory usage
