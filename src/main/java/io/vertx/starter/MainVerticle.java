@@ -40,7 +40,7 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleListCustomer(RoutingContext routingContext) {
-		log.debug("listCustomer");
+		log.info("listCustomer");
 
 		JsonArray arr = new JsonArray();
 		repository.findAll().forEach(c -> {
@@ -51,20 +51,29 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleAddCustomer(RoutingContext routingContext) {
-		log.debug("addCustomer");
+		log.info("addCustomer");
+
 		JsonObject body = routingContext.getBodyAsJson();
 		HttpServerResponse response = routingContext.response();
 
 		if (body == null) {
 			response.setStatusCode(400).end();
 		} else {
-			repository.save(body.mapTo(Customer.class));
-			response.end();
+			Customer c = body.mapTo(Customer.class);
+			Optional<Customer> customer = repository.findById(Integer.valueOf(c.getId()));
+
+			if (!customer.isPresent()) {
+				repository.save(c);
+				response.end();
+			} else {
+				response.setStatusCode(400).end();
+			}
 		}
 	}
 
 	private void handleGetCustomer(RoutingContext routingContext) {
-		log.debug("getCustomer");
+		log.info("getCustomer");
+
 		String id = routingContext.request().getParam("id");
 		HttpServerResponse response = routingContext.response();
 
@@ -82,7 +91,8 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleEditCustomer(RoutingContext routingContext) {
-		log.debug("editCustomer");
+		log.info("editCustomer");
+
 		String id = routingContext.request().getParam("id");
 		JsonObject body = routingContext.getBodyAsJson();
 		HttpServerResponse response = routingContext.response();
@@ -104,7 +114,8 @@ public class MainVerticle extends AbstractVerticle {
 	}
 
 	private void handleDeleteCustomer(RoutingContext routingContext) {
-		log.debug("deleteCustomer");
+		log.info("deleteCustomer");
+		
 		String id = routingContext.request().getParam("id");
 		HttpServerResponse response = routingContext.response();
 

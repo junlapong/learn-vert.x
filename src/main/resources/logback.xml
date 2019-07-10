@@ -24,12 +24,13 @@
     </appender>
 
     <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-        <appender-ref ref="DAILYLOG" />
+        <!-- <appender-ref ref="DAILYLOG" /> -->
 		<appender-ref ref="CONSOLE" />
         <includeCallerData>true</includeCallerData>
     </appender>
 
     <logger name="io.vertx.starter" level="INFO" />
+	<logger name="io.vertx.starter.demo" level="DEBUG" />
 
     <root level="INFO">
         <!-- CONSOLE, DAILYLOG, ASYNC -->

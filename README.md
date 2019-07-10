@@ -35,6 +35,31 @@ content-type: text/html
 Hello Vert.x
 ```
 
+Use [REST Client for VS Code](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for test request
+
+see file `request.http`
+
+	@host = http://localhost:8080
+
+	###
+
+	POST {{host}}/customers HTTP/1.1
+	Content-Type: application/json
+
+	{
+		"id": 0,
+		"firstName": "Somchai",
+		"lastName": "Jaidee",
+		"age": 20,
+		"email": "somchai.jaidee@mail.com"
+	}
+
+	###
+
+	GET {{host}}/customers HTTP/1.1
+
+
+
 Use [wrk](https://github.com/wg/wrk) for benchmarking
 
     $ wrk -c100 -d30s -t4 http://localhost:8080/

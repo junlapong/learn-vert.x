@@ -30,7 +30,7 @@ Content-Type: application/json
 	"id": 2,
 	"firstName": "John",
 	"lastName": "Doe",
-	"age": 20,
+	"age": 30,
 	"email": "john.doe@mail.com"
 }
 
